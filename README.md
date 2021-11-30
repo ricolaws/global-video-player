@@ -1,4 +1,4 @@
-<h1 align="center">Obscure Youtube</h1>
+<h1 align="center">Global Video Player</h1>
 
 <div align="center">
    Search youtube for recent videos from anywhere in the world.
