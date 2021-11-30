@@ -5,14 +5,14 @@ import React, { Component } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
+// The 3D Globe UI. When DblClicked the raycaster finds the point of intersection with the globe in 3D space and returns the spherical coordinates, these are translated into the geographic coordinates used by the Youtube API.
 class Globe extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      //states
-    };
+    this.state = {};
   }
 
+  // All 3D stuff renders continuously after component mounts.
   componentDidMount() {
     const setLocation = (coords) => {
       this.props.setCoords(coords);
@@ -21,9 +21,11 @@ class Globe extends Component {
     // === THREE.JS CODE START ===
     const scene = new THREE.Scene();
     const canvas = document.querySelector("canvas.webgl");
+
     /**
      * ++  ++     resize canvas with window     ++  ++
      **/
+
     const sizes = {
       width: window.innerWidth,
       height: window.innerHeight,
@@ -46,6 +48,7 @@ class Globe extends Component {
     /**
      * ++  ++     Camera     ++  ++
      **/
+
     const camera = new THREE.PerspectiveCamera(
       75,
       sizes.width / sizes.height,
@@ -78,13 +81,11 @@ class Globe extends Component {
     const earthMaterial = new THREE.MeshPhysicalMaterial({
       flatShading: true,
       wireframe: false,
-      // color: new THREE.Color(0xafafff),
       bumpMap: loader.load(earthBump),
       bumpScale: 0.7,
       envMap: loader.load(specTexture),
       clearcoat: 1,
       // clearcoatRoughnessMap: earthTexture,
-
       clearcoatRoughness: 0.5,
       reflectivity: 0.7,
     });
@@ -96,7 +97,6 @@ class Globe extends Component {
       opacity: 0.15,
       map: loader.load(waterTexture),
     });
-    // airMaterial.repeat.set(2, 2);
 
     // Mesh
     const sphere = new THREE.Mesh(geometry, earthMaterial);
@@ -109,7 +109,6 @@ class Globe extends Component {
     scene.add(sphere2);
 
     // Lights
-
     const pointLight = new THREE.PointLight(0xff6000, 0.25);
     pointLight.position.set(7, 2, 17);
     scene.add(pointLight);
@@ -177,7 +176,7 @@ class Globe extends Component {
       mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
       raycaster.setFromCamera(mouse, camera);
       intersects = raycaster.intersectObjects([sphere]);
-      if (intersects.length == 0) return;
+      if (intersects.length === 0) return;
       pointOfIntersection = intersects[0].point;
       sphere.worldToLocal(localPoint.copy(pointOfIntersection));
       createPoint(localPoint);
@@ -207,14 +206,19 @@ class Globe extends Component {
 
       coords = [lat, lon];
       setLocation(coords);
-      // getVideos(coords);
     }
     // === THREE.JS CODE END ===
   }
   render() {
     return (
       <div className="container">
-        <canvas className="webgl" ref={(ref) => (this.mount = ref)}></canvas>
+        <canvas
+          className="webgl"
+          style={{
+            opacity: this.props.showLanding ? 0 : 1,
+          }}
+          ref={(ref) => (this.mount = ref)}
+        ></canvas>
       </div>
     );
   }
