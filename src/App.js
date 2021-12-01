@@ -8,7 +8,6 @@ import LandingPage from "./components/LandingPage";
 import Message from "./components/Message";
 require("dotenv").config();
 
-console.log(process.env.REACT_APP_API_KEY);
 function App() {
   const [clientIsLoaded, setClientIsLoaded] = useState(false);
   const [coords, setCoords] = useState([]);
