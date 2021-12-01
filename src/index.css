@@ -1,6 +1,7 @@
 :root {
   --main-bg-color: rgb(0, 0, 88);
   --main-text-color: rgb(218, 218, 218);
+  font-size: 100%;
 }
 
 * {
@@ -154,5 +155,56 @@ button:hover {
   position: absolute;
   height: 20%;
   bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
   z-index: 2;
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  :root {
+    font-size: 92%;
+  }
+  .landing-msg p {
+    padding: 1rem;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .container {
+    place-items: initial;
+  }
+
+  .landing-msg {
+    padding: 1.4rem;
+    padding-top: 4rem;
+    height: 26rem;
+  }
+
+  .landing-msg p {
+    padding: 1rem;
+    font-size: 0.8rem;
+    line-height: 1.2rem;
+    letter-spacing: 0.2rem;
+    width: 100%;
+  }
+
+  .landing-msg-header h1 {
+    font-size: 1.4rem;
+  }
+
+  .footer {
+    /* position: relative; */
+    bottom: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .message {
+    width: 90%;
+    text-align: center;
+    font-size: 0.5rem;
+  }
 }

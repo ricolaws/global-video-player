@@ -33,22 +33,22 @@ function LandingPage(props) {
           this moment in time. Just spin the globe and choose a spot, the most
           recent uploads from that location will play automatically.
         </p>
-        {props.clientIsReady ? (
-          ""
-        ) : (
-          <div className="footer">
-            <button
-              className="landing-button"
-              onClick={props.onClose}
-              style={{
-                opacity: showButton ? 1 : 0,
-              }}
-            >
-              go
-            </button>{" "}
-          </div>
-        )}
       </div>
+      {props.clientIsReady ? (
+        ""
+      ) : (
+        <div className="footer">
+          <button
+            className="landing-button"
+            onClick={props.onClose}
+            style={{
+              opacity: showButton ? 1 : 0,
+            }}
+          >
+            go
+          </button>{" "}
+        </div>
+      )}
     </div>
   );
 }
