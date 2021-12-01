@@ -26,7 +26,7 @@
 
 ## Overview
 
-![Screen Shot 2021-10-05 at 3 41 57 PM](https://user-images.githubusercontent.com/41934323/136112809-d6b44234-7b1a-4c9f-8b9a-92b519f1ed7f.png)
+![Screen Shot 2021-11-30 at 6 27 10 PM](https://user-images.githubusercontent.com/41934323/144161097-fb23689f-c292-4751-8e82-21423453479c.png)
 
 - This project was designed as a novel way of interacting with the YouTube API. 
 - By searching for content using only geographic location the user can have access to videos that would be impossible to find on YouTube itself.
