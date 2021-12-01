@@ -2,7 +2,7 @@
 
 <div align="center">
   <h3>
-    <a href="https://https://obscure-global.web.app/">
+    <a href="https://obscure-global.web.app/">
       Demo
     </a>
   </h3>
