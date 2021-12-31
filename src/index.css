@@ -153,7 +153,17 @@ button:hover {
 
 .footer {
   position: absolute;
+  bottom: 2rem;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+}
 
+.landing-footer {
+  position: absolute;
   bottom: 2rem;
   left: 0;
   right: 0;
@@ -173,7 +183,7 @@ button:hover {
   }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (min-width: 415px) and (max-width: 767px) {
   .container {
     place-items: initial;
   }
@@ -196,8 +206,8 @@ button:hover {
     font-size: 1.4rem;
   }
 
-  .footer {
-    /* position: relative; */
+  .footer,
+  .landing-footer {
     bottom: 4rem;
     margin-bottom: 4rem;
   }
@@ -206,5 +216,56 @@ button:hover {
     width: 90%;
     text-align: center;
     font-size: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 415px) {
+  /* :root {
+    font-size: 84%;
+  } */
+
+  .container {
+    place-items: initial;
+  }
+
+  .landing-msg {
+    padding: 1.4rem;
+    padding-top: 4rem;
+    height: 26rem;
+  }
+
+  .landing-msg p {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    line-height: 1rem;
+    letter-spacing: 0.2rem;
+    width: 100%;
+  }
+
+  .landing-msg-header h1 {
+    font-size: 1.2rem;
+  }
+
+  .landing-footer {
+    position: absolute;
+    bottom: 3rem;
+    /* left: 0;
+    right: 0;
+    margin: auto; */
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+  }
+
+  .message {
+    width: 90%;
+    text-align: center;
+    font-size: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 415px) and (max-height: 569px) {
+  :root {
+    font-size: 84%;
   }
 }

@@ -41,7 +41,7 @@ function LandingPage(props) {
       {props.clientIsReady ? (
         ""
       ) : (
-        <div className="footer">
+        <div className="landing-footer">
           <button
             className="landing-button"
             onClick={props.onClose}
