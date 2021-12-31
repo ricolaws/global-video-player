@@ -1,6 +1,7 @@
 // import React from "react";
 import VideoWindow from "./VideoWindow";
 import { useEffect, useState } from "react";
+import useWindowDimensions from "../hooks/GetWindowDimensions";
 
 // control the Youtube API. Component renders when props.showVideo is true.
 // Get an array of video IDs from App as props.videoList and set the url for the Youtube API.
@@ -10,6 +11,7 @@ function VideoController(props) {
   const [url, setUrl] = useState("");
   const [count, setCount] = useState(0);
   const [showButton, setShowButton] = useState(false);
+  const { height, width } = useWindowDimensions();
 
   const nextVideo = () => {
     const nextCount = count + 1;
@@ -36,7 +38,14 @@ function VideoController(props) {
   }, 1600);
 
   return (
-    <div className="modal-container">
+    <div
+      className="modal-container"
+      style={{
+        width: width,
+        height: height,
+      }}
+    >
+      <div className="modal-background" onClick={props.onClose}></div>
       <VideoWindow
         url={url}
         showVideo={props.showVideo}
@@ -62,7 +71,6 @@ function VideoController(props) {
           Next
         </button>
       </footer>
-      <div className="modal-background" onClick={props.onClose}></div>
     </div>
   );
 }

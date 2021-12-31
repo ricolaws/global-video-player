@@ -1,14 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // The landing page. The button that takes you to the app appears when the Google API is ready.
 function LandingPage(props) {
   const [showButton, setShowButton] = useState(false);
 
-  if (props.showLanding) {
-    setTimeout(() => {
+  useEffect(() => {
+    let timer1 = setTimeout(() => {
       setShowButton(true);
     }, 1600);
-  }
+
+    return () => {
+      clearTimeout(timer1);
+    };
+  }, [props.showLanding]);
 
   return (
     <div
@@ -46,7 +50,7 @@ function LandingPage(props) {
             }}
           >
             go
-          </button>{" "}
+          </button>
         </div>
       )}
     </div>

@@ -16,7 +16,6 @@ function Gapi(props) {
       .then(
         function () {
           props.gapiIsReady(true);
-          // gapiReady(true);
         },
         function (err) {
           console.error("Error loading GAPI client for API", err);

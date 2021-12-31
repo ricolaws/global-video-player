@@ -1,19 +1,26 @@
 import ReactPlayer from "react-player/youtube";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import useWindowDimensions from "../hooks/GetWindowDimensions";
 
 // the window that opens containing the ReactPlayer component.
-// window size is monitored for responsiveness.
-// the parent container width is set to zero when show window is true. an animation occurs before the player itself is visible.
+// window size is monitored with useWindowDimensions hook and an animation occurs before the player itself is visible.
 function VideoWindow(props) {
   const [showWindow, setShowWindow] = useState(false);
-
-  // monitor window size to keep video window responsive
-  let width = window.innerWidth * 0.66;
-  let height = width * 0.5625;
-  window.addEventListener("resize", () => {
-    width = window.innerWidth * 0.66;
-    height = width * 0.5625;
+  const { height, width } = useWindowDimensions();
+  const [vDimensions, setVDimensions] = useState({
+    w: width,
+    h: height,
   });
+
+  // monitor window size to keep video window responsive. set larger size on smaller screen.
+  useEffect(() => {
+    if (width > 880) {
+      setVDimensions({ w: width * 0.75, h: width * 0.75 * 0.5625 });
+    }
+    if (width <= 880) {
+      setVDimensions({ w: width, h: width * 0.5625 });
+    }
+  }, [width, height]);
 
   const openVideoWindow = () => {
     setTimeout(() => {
@@ -29,14 +36,14 @@ function VideoWindow(props) {
     <div
       className="pop-open"
       style={{
-        width: showWindow ? width : "0",
-        height: showWindow ? height : height,
+        width: showWindow ? vDimensions.w : "0",
+        height: showWindow ? vDimensions.h : "0",
       }}
     >
       <div
         className="black-box"
         style={{
-          height: height,
+          height: vDimensions.h,
         }}
       >
         <ReactPlayer
@@ -45,7 +52,12 @@ function VideoWindow(props) {
             opacity: showWindow ? 1 : 0,
           }}
           url={props.url}
-          controls={false}
+          config={{
+            youtube: {
+              playerVars: { fs: 1, playsinline: 0, iv_load_policy: 3 },
+            },
+          }}
+          controls={true}
           playing={true}
           onEnded={props.nextVideo}
           onError={props.nextVideo}
