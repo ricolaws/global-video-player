@@ -54,7 +54,7 @@ function VideoWindow(props) {
           url={props.url}
           config={{
             youtube: {
-              playerVars: { fs: 1, playsinline: 0, iv_load_policy: 3 },
+              playerVars: { fs: 1, playsinline: 1, iv_load_policy: 3, rel:0 },
             },
           }}
           controls={true}
