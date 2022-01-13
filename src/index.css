@@ -183,9 +183,9 @@ button:hover {
 }
 
 @media screen and (min-width: 415px) and (max-width: 767px) {
-  /* .container {
+  .container {
     place-items: initial;
-  } */
+  }
 
   .landing-msg {
     padding: 1.4rem;
