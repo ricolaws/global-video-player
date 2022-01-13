@@ -46,31 +46,33 @@ function VideoController(props) {
       }}
     >
       <div className="modal-background" onClick={props.onClose}></div>
-      <VideoWindow
-        url={url}
-        showVideo={props.showVideo}
-        nextVideo={nextVideo}
-      />
-      <footer className="footer">
-        <button
-          className="modal-button"
-          onClick={props.onClose}
-          style={{
-            opacity: showButton ? 1 : 0,
-          }}
-        >
-          Back
-        </button>
-        <button
-          className="modal-button"
-          onClick={nextVideo}
-          style={{
-            opacity: showButton ? 1 : 0,
-          }}
-        >
-          Next
-        </button>
-      </footer>
+      <div className="modal-content">
+        <VideoWindow
+          url={url}
+          showVideo={props.showVideo}
+          nextVideo={nextVideo}
+        />
+        <footer className="footer">
+          <button
+            className="modal-button"
+            onClick={props.onClose}
+            style={{
+              opacity: showButton ? 1 : 0,
+            }}
+          >
+            Back
+          </button>
+          <button
+            className="modal-button"
+            onClick={nextVideo}
+            style={{
+              opacity: showButton ? 1 : 0,
+            }}
+          >
+            Next
+          </button>
+        </footer>
+      </div>
     </div>
   );
 }

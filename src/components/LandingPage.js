@@ -26,7 +26,7 @@ function LandingPage(props) {
           <h1>Side-step the algorithm</h1>
           <h1>that controls your Youtube feed.</h1>
         </header>
-
+      <main>
         <p>
           Replace your personalized stream of viral videos and monetized content
           with an open landscape of obscure, unfiltered and unseen video.
@@ -37,8 +37,8 @@ function LandingPage(props) {
           this moment in time. Just spin the globe and choose a spot, the most
           recent uploads from that location will play automatically.
         </p>
-      </div>
-      {props.clientIsReady ? (
+        </main>
+        {props.clientIsReady ? (
         ""
       ) : (
         <div className="landing-footer">
@@ -53,6 +53,8 @@ function LandingPage(props) {
           </button>
         </div>
       )}
+      </div>
+      
     </div>
   );
 }
