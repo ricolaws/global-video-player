@@ -1,7 +1,7 @@
 /* global gapi */
 import { useEffect } from "react";
 const API_KEY = `${process.env.REACT_APP_API_KEY}`;
-
+console.log(API_KEY)
 // load the Google API then set gapiIsReady to true in App
 function Gapi(props) {
   useEffect(() => {
