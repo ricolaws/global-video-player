@@ -9,76 +9,83 @@ import Message from "./components/Message";
 require("dotenv").config();
 
 function App() {
-  const [clientIsLoaded, setClientIsLoaded] = useState(false);
-  const [coords, setCoords] = useState([]);
-  const [videoList, setVideoList] = useState(null);
-  const [showVideo, setShowVideo] = useState(false);
-  const [showLanding, setShowLanding] = useState(true);
-  const [noVideos, setNoVideos] = useState(false);
-  const [needMoreVideos, setNeedMoreVideos] = useState(false);
+	const [clientIsLoaded, setClientIsLoaded] = useState(false);
+	const [coords, setCoords] = useState([]);
+	const [videoList, setVideoList] = useState(null);
+	const [viewsList, setViewsList] = useState(null);
+	const [locationsList, setLocationsList] = useState(null);
+	const [showVideo, setShowVideo] = useState(false);
+	const [showLanding, setShowLanding] = useState(true);
+	const [noVideos, setNoVideos] = useState(false);
+	const [needMoreVideos, setNeedMoreVideos] = useState(false);
 
-  function gapiIsReadyHandler(value) {
-    setClientIsLoaded(value);
-    console.log("GAPI client loaded for API");
-  }
+	function gapiIsReadyHandler(value) {
+		setClientIsLoaded(value);
+		console.log("GAPI client loaded for API");
+	}
 
-  const setCoordsHandler = (value) => {
-    setCoords(value);
-  };
+	const setCoordsHandler = (value) => {
+		setCoords(value);
+	};
 
-  const errorHandler = (error) => {
-    setNoVideos(true);
-    setShowVideo(false);
-    console.log(error);
-  };
+	const errorHandler = (error) => {
+		setNoVideos(true);
+		setShowVideo(false);
+		console.log(error);
+	};
 
-  const newVideoListHandler = (value) => {
-    setVideoList(value);
-    setShowVideo(true);
-    setNeedMoreVideos(false);
-  };
+	const newVideoListHandler = (ids, views, locations) => {
+		const videos = {
+			ids: ids,
+			views: views,
+			locations: locations,
+		};
+		setVideoList(videos);
+		setShowVideo(true);
+		setNeedMoreVideos(false);
+	};
 
-  const getMoreVideos = (condition) => {
-    setNeedMoreVideos(condition);
-  };
+	const getMoreVideos = (condition) => {
+		setNeedMoreVideos(condition);
+	};
 
-  const showVideoHandler = (condition) => {
-    setShowVideo(condition);
-  };
+	const showVideoHandler = (condition) => {
+		setShowVideo(condition);
+	};
 
-  const showLandingHandler = (condition) => {
-    setShowLanding(condition);
-  };
+	const showLandingHandler = (condition) => {
+		setShowLanding(condition);
+	};
 
-  return (
-    <div>
-      <LandingPage
-        showLanding={showLanding}
-        clientIsLoaded={clientIsLoaded}
-        onClose={() => showLandingHandler(false)}
-      />
-      <Gapi gapiIsReady={gapiIsReadyHandler} />
-      <Message showLanding={showLanding} />
-      <Youtube
-        clientIsLoaded={clientIsLoaded}
-        coords={coords}
-        errorHandler={errorHandler}
-        newVideoList={newVideoListHandler}
-        needMoreVideos={needMoreVideos}
-      />
-      {!showVideo ? null : (
-        <VideoController
-          noVideos={noVideos}
-          showVideo={showVideo}
-          onClose={() => showVideoHandler(false)}
-          videoList={videoList}
-          getMoreVideos={getMoreVideos}
-        />
-      )}
+	return (
+		<div>
+			<LandingPage
+				showLanding={showLanding}
+				clientIsLoaded={clientIsLoaded}
+				onClose={() => showLandingHandler(false)}
+			/>
+			<Gapi gapiIsReady={gapiIsReadyHandler} />
+			<Message showLanding={showLanding} />
+			<Youtube
+				clientIsLoaded={clientIsLoaded}
+				coords={coords}
+				errorHandler={errorHandler}
+				newVideoList={newVideoListHandler}
+				needMoreVideos={needMoreVideos}
+			/>
+			{!showVideo ? null : (
+				<VideoController
+					noVideos={noVideos}
+					showVideo={showVideo}
+					onClose={() => showVideoHandler(false)}
+					videoList={videoList}
+					getMoreVideos={getMoreVideos}
+				/>
+			)}
 
-      <Globe setCoords={setCoordsHandler} showLanding={showLanding} />
-    </div>
-  );
+			<Globe setCoords={setCoordsHandler} showLanding={showLanding} />
+		</div>
+	);
 }
 
 const rootElement = document.getElementById("root");
