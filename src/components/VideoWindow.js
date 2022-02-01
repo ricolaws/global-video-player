@@ -7,6 +7,7 @@ import useWindowDimensions from "../hooks/GetWindowDimensions";
 function VideoWindow(props) {
   const [showWindow, setShowWindow] = useState(false);
   const { height, width } = useWindowDimensions();
+  // const [fullScreen, setFullScreen] = useState(1);
   const [vDimensions, setVDimensions] = useState({
     w: width,
     h: height,
@@ -20,6 +21,14 @@ function VideoWindow(props) {
     if (width <= 880) {
       setVDimensions({ w: width, h: width * 0.5625 });
     }
+
+    // if (width < 880 && width > height) {
+    //   console.log("landscape")
+    //   setFullScreen(0)
+    // } else if (width < 880 && width < height) {
+    //   console.log("portrait")
+    //   setFullScreen(1)
+    // }
   }, [width, height]);
 
   const openVideoWindow = () => {
@@ -54,7 +63,7 @@ function VideoWindow(props) {
           url={props.url}
           config={{
             youtube: {
-              playerVars: { fs: 1, playsinline: 0, iv_load_policy: 3 },
+              playerVars: { autoplay: 1, fs: 1, playsinline: 1, iv_load_policy: 3, rel:0 },
             },
           }}
           controls={true}
